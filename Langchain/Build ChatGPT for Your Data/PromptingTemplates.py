@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from langchain_core.prompts.chat import SystemMessagePromptTemplate,HumanMessagePromptTemplate,ChatPromptTemplate
 from IPython.display import display,Markdown
 from langchain_openai.chat_models.base import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
@@ -23,3 +24,12 @@ formatted_chat_prompt= chat_prompt.format_prompt(SUBJECT="Sparkling waters",MOOD
 
 #disp_markdown(chat_model.invoke(formatted_chat_prompt))
 print(chat_model.invoke(formatted_chat_prompt).content)
+
+### Putting in Chain in LangChain ###
+
+from langchain.chains.llm import LLMChain
+
+#chain = chat_prompt | chat_model | StrOutputParser()
+chain=LLMChain(llm=chat_model,prompt=chat_prompt)
+
+print(chain.predict(SUBJECT="sparkling water",MOOD="angry", CONTENT="Is Bubly a good sparkling water?"))
