@@ -7,6 +7,9 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 #from langchain.vectorstores import Chroma
 from langchain_community.vectorstores import Chroma
+from langchain.chains.question_answering import load_qa_chain
+from langchain_community.llms import OpenAI
+
 load_dotenv()
 
 chat_model=ChatOpenAI(model_name="gpt-3.5-turbo")
@@ -30,3 +33,4 @@ query = "What is the Rabbit late for?"
 docs = docsearch.similarity_search(query,k=1)
 
 print(docs)
+
