@@ -32,5 +32,5 @@ query = "What is the Rabbit late for?"
 
 docs = docsearch.similarity_search(query,k=1)
 
-print(docs)
+print(docs[0])
 
